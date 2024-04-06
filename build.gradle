@@ -23,5 +23,5 @@ test {
     useJUnitPlatform()
 }
 application {
-    mainClass = "br.com.webcrawler.Main"
+    mainClass = "Main"
 }
