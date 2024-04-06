@@ -97,10 +97,10 @@ class WebCrawler {
 
     }
 
-    private static void configurarArquivo() {
+     private static void configurarArquivo() {
         Utils.criarDiretorio(diretorioDownloads)
         try {
-            String caminhDoArquivo ="Downloads/historico-versoes-componentes"
+            String caminhDoArquivo ="Downloads/historico-versoes-componentes.txt"
 
             FileWriter fileWriter = new FileWriter(caminhDoArquivo)
             BufferedWriter writer = new BufferedWriter(fileWriter)
@@ -108,15 +108,15 @@ class WebCrawler {
             writer.close()
 
         } catch (IOException e) {
-            System.err.println("Falha ao conectar-se ao site: " + e.getMessage())
+            System.err.println("Falha ao criar arquivo: " + e.getMessage())
             throw e
         }
     }
 
     private static void adicionarDadosArquivo(String competencia, String publicacao, String inicioVigencia) {
         try {
-            String caminhDoArquivo ="Downloads/historico-versoes-componentes"
-            
+            String caminhDoArquivo ="Downloads/historico-versoes-componentes.txt"
+
             FileWriter fileWriter = new FileWriter(caminhDoArquivo,true)
             BufferedWriter writer = new BufferedWriter(fileWriter)
 
@@ -124,7 +124,7 @@ class WebCrawler {
             writer.close()
 
         } catch (IOException e) {
-            System.err.println("Falha ao conectar-se ao site: " + e.getMessage())
+            System.err.println("Falha ao criar adicionar dados arquivo: " + e.getMessage())
             throw e
         }
     }

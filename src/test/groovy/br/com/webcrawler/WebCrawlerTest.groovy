@@ -35,13 +35,13 @@ class WebCrawlerTest {
     }
 
     @Test
-    void obterHistoricoDeVersoesTISS() {
+    void obterHistoricoDeVersoesTISSTest() {
         // Given:
-        String arquivoEsperado = "https://www.gov.br/ans/pt-br/assuntos/prestadores/padrao-para-troca-de-" +
-                "informacao-de-saude-suplementar-2013-tiss/padrao-tiss-historico-das-versoes-dos-componentes-do-padrao-tiss"
+        String arquivoEsperado = "historico-versoes-componentes.txt"
         // When:
-        String teste = WebCrawler.obterHistoricoDeVersoesTISS()
+        WebCrawler.obterHistoricoDeVersoesTISS()
         //Then:
-        assertEquals(arquivoEsperado,teste)
+        File arquivo = new File("Downloads/${arquivoEsperado    }")
+        assert arquivo.exists()
     }
 }
