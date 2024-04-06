@@ -63,7 +63,8 @@ class WebCrawler {
     }
 
     static void obterHistoricoDeVersoesTISS() {
-        configurarArquivo()
+        Utils.criarDiretorio(diretorioDownloads)
+        Utils.configurarArquivo()
         try {
             Document docTISS = getPagina(obterLinkPaginaTISS())
             Element elementoHistoricoVersoes = docTISS.getElementsByClass("internal-link").get(1)
@@ -85,7 +86,7 @@ class WebCrawler {
                     String publicacao = colunasTabela.get(1).text()
                     String inicioVigencia = colunasTabela.get(2).text()
 
-                    adicionarDadosArquivo(competencia, publicacao, inicioVigencia)
+                    Utils.adicionarDadosArquivo(competencia, publicacao, inicioVigencia)
                 }
 
             }
@@ -96,38 +97,5 @@ class WebCrawler {
         }
 
     }
-
-     private static void configurarArquivo() {
-        Utils.criarDiretorio(diretorioDownloads)
-        try {
-            String caminhDoArquivo ="Downloads/historico-versoes-componentes.txt"
-
-            FileWriter fileWriter = new FileWriter(caminhDoArquivo)
-            BufferedWriter writer = new BufferedWriter(fileWriter)
-            writer.write("Competência\tPublicação\tInício de Vigência\n")
-            writer.close()
-
-        } catch (IOException e) {
-            System.err.println("Falha ao criar arquivo: " + e.getMessage())
-            throw e
-        }
-    }
-
-    private static void adicionarDadosArquivo(String competencia, String publicacao, String inicioVigencia) {
-        try {
-            String caminhDoArquivo ="Downloads/historico-versoes-componentes.txt"
-
-            FileWriter fileWriter = new FileWriter(caminhDoArquivo,true)
-            BufferedWriter writer = new BufferedWriter(fileWriter)
-
-            writer.write("${competencia}\t${publicacao}\t${inicioVigencia}\n")
-            writer.close()
-
-        } catch (IOException e) {
-            System.err.println("Falha ao criar adicionar dados arquivo: " + e.getMessage())
-            throw e
-        }
-    }
-
 
 }
