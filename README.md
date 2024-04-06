@@ -22,3 +22,7 @@ Este projeto tem o objetivo de coletar dados do padrão TISS (Troca de Informaç
   gradlew.bat run
 ``` 
 
+***3. Após a execução navegue até a pasta Downloads para ver os arquivos obtidos***
+```shell
+  cd Downloads
+``` 
