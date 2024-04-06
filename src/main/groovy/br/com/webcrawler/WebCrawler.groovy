@@ -1,6 +1,6 @@
 package br.com.webcrawler
 
-import br.com.webcrawler.Utils.Utils
+import br.com.webcrawler.WebCrawlerUtils.Utils
 import groovyx.net.http.HttpBuilder
 import groovyx.net.http.optional.Download
 import org.jsoup.Jsoup
@@ -39,7 +39,6 @@ class WebCrawler {
             Element elementoPadraoTISSVersao = docTISS.getElementsByClass("internal-link").get(0)
             String linkPadraoTISSVersao = elementoPadraoTISSVersao.getElementsByTag("a").attr("href")
 
-
             Document docPaginaDownload = getPagina(linkPadraoTISSVersao)
             Element elementoPaginaDownload = docPaginaDownload.getElementsByTag('tbody').first().getElementsByTag('tr').last()
             String linkDeDownload = elementoPaginaDownload.getElementsByTag('a').attr('href')
@@ -49,13 +48,7 @@ class WebCrawler {
             String nomeDoArquivo = "PadroTISSComunicao202301.zip"
             String caminho = "${diretorioDownloads}/${nomeDoArquivo}"
 
-            File arquivo = new File(caminho)
-
-            HttpBuilder.configure {
-                request.uri = linkDeDownload
-            }.get {
-                Download.toFile(delegate, arquivo)
-            }
+            Utils.baixarESalvarArquivos(linkDeDownload,caminho)
 
         } catch (IOException e) {
             e.printStackTrace()
@@ -94,6 +87,29 @@ class WebCrawler {
         } catch (IOException e) {
             System.err.println("Falha ao coletar informações: " + e.getMessage())
             throw e
+        }
+
+    }
+
+    static void fazerDownloadDaTabelaErrosANS() {
+        try {
+            Document docTISS = getPagina(obterLinkPaginaTISS())
+            Element elementoTabelasRelacionadas = docTISS.getElementsByClass("internal-link").get(2)
+            String linkTabelasRelacionadas = elementoTabelasRelacionadas.getElementsByTag("a").attr("href")
+
+            Document docPaginaDownload = getPagina(linkTabelasRelacionadas)
+            Element elementoPaginaDownload = docPaginaDownload.getElementsByClass("internal-link").get(0)
+            String linkDeDownload = elementoPaginaDownload.getElementsByTag('a').attr('href')
+
+            Utils.criarDiretorio(diretorioDownloads)
+
+            String nomeDoArquivo = "Tabelaerrosenvioparaanspadraotiss__1_.xlsx"
+            String caminho = "${diretorioDownloads}/${nomeDoArquivo}"
+
+            Utils.baixarESalvarArquivos(linkDeDownload,caminho)
+
+        }catch (IOException e) {
+            e.printStackTrace()
         }
 
     }

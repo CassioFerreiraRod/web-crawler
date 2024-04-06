@@ -1,9 +1,9 @@
-package br.com.webcrawler;
+package br.com.webcrawler
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Test
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*
 
 class WebCrawlerTest {
 
@@ -26,22 +26,33 @@ class WebCrawlerTest {
     @Test
     void fazerDownloadDoArquivoTest() {
         // Given:
-        String arquivoEsperado = "PadroTISSComunicao202301.zip"
+        String nomeDoArquivoEsperado = "PadroTISSComunicao202301.zip"
         // When:
         WebCrawler.fazerDownloadDoArquivo()
         //Then:
-        File arquivo = new File("Downloads/${arquivoEsperado    }")
+        File arquivo = new File("Downloads/${nomeDoArquivoEsperado}")
         assert arquivo.exists()
     }
 
     @Test
     void obterHistoricoDeVersoesTISSTest() {
         // Given:
-        String arquivoEsperado = "historico-versoes-componentes.txt"
+        String nomeDoArquivoEsperado = "historico-versoes-componentes.txt"
         // When:
         WebCrawler.obterHistoricoDeVersoesTISS()
         //Then:
-        File arquivo = new File("Downloads/${arquivoEsperado    }")
+        File arquivo = new File("Downloads/${nomeDoArquivoEsperado}")
+        assert arquivo.exists()
+    }
+
+    @Test
+    void fazerDownloadDaTabelaErrosANSTest() {
+        // Given:
+        String nomeDoArquivoEsperado = "Tabelaerrosenvioparaanspadraotiss__1_.xlsx"
+        // When:
+        WebCrawler.fazerDownloadDaTabelaErrosANS()
+        //Then:
+        File arquivo = new File("Downloads/${nomeDoArquivoEsperado}")
         assert arquivo.exists()
     }
 }
