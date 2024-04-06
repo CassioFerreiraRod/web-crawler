@@ -26,11 +26,11 @@ class WebCrawlerTest {
     @Test
     void fazerDownloadDoArquivoTest() {
         // Given:
-        String linkEsperado = "PadroTISSComunicao202301.zip"
+        String arquivoEsperado = "PadroTISSComunicao202301.zip"
         // When:
         WebCrawler.fazerDownloadDoArquivo()
         //Then:
-        File arquivo = new File("PadroTISSComunicao202301.zip")
+        File arquivo = new File("Downloads/${arquivoEsperado}")
         assert arquivo.exists()
     }
 }

@@ -41,7 +41,7 @@ class WebCrawler {
             String linkDeDownload = elementoPaginaDownload.getElementsByTag('a').attr('href')
 
             String nomeDoArquivo = "PadroTISSComunicao202301.zip"
-            String caminho = "./${nomeDoArquivo}"
+            String caminho = "Downloads/${nomeDoArquivo}"
 
             File arquivo = new File(caminho)
 
@@ -50,8 +50,6 @@ class WebCrawler {
             }.get {
                 Download.toFile(delegate, arquivo)
             }
-
-
 
         } catch (IOException e) {
             e.printStackTrace()
