@@ -10,9 +10,15 @@ Este projeto tem o objetivo de coletar dados do padrão TISS (Troca de Informaç
 ## Para executar este projeto
 ***1. Clone este repositório***
 ```bash
-   git clone
+   git clone https://github.com/CassioFerreiraRod/web-crawler.git
 ``` 
-***2. Execute o gradle do programa***
+***2. Execute o gradle do programa pelo terminal ou prompt***
+* Sistemas Linux e Sistemas baseados em Unix
 ```shell
-   ./gradlew run
+  ./gradlew run
+  ``` 
+* Windows
+```shell
+  gradlew.bat run
 ``` 
+
