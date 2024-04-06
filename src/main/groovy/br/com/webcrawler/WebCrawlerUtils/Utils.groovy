@@ -1,4 +1,9 @@
-package br.com.webcrawler.Utils
+package br.com.webcrawler.WebCrawlerUtils
+
+import groovyx.net.http.HttpBuilder
+import groovyx.net.http.optional.Download
+import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
 
 class Utils {
     static void criarDiretorio(String diretorio){
@@ -37,6 +42,16 @@ class Utils {
         } catch (IOException e) {
             System.err.println("Falha ao criar adicionar dados arquivo: " + e.getMessage())
             throw e
+        }
+    }
+
+    static void baixarESalvarArquivos(String link, String caminho) {
+        File arquivo = new File(caminho)
+
+        HttpBuilder.configure {
+            request.uri = link
+        }.get {
+            Download.toFile(delegate, arquivo)
         }
     }
 
